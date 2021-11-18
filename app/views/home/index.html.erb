@@ -1,3 +1,6 @@
 <h1>Home#index</h1>
 <p>Find me in app/views/home/index.html.erb</p>
-<%= link_to 'home', root_path %>
+<%= link_to 'home', root_path({ user_id: 1, name: 'ejoka' }) %><br />
+
+name: <%= @full_name %> <br />
+User ID: <%= @user_id %>
