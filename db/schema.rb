@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_19_130217) do
+ActiveRecord::Schema.define(version: 2021_11_19_150940) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,16 @@ ActiveRecord::Schema.define(version: 2021_11_19_130217) do
     t.index ["subject_id"], name: "index_pages_on_subject_id"
   end
 
+  create_table "section_edits", force: :cascade do |t|
+    t.bigint "admin_user_id", null: false
+    t.bigint "section_id", null: false
+    t.string "summary"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["admin_user_id"], name: "index_section_edits_on_admin_user_id"
+    t.index ["section_id"], name: "index_section_edits_on_section_id"
+  end
+
   create_table "sections", force: :cascade do |t|
     t.string "name"
     t.integer "position"
@@ -67,5 +77,7 @@ ActiveRecord::Schema.define(version: 2021_11_19_130217) do
   add_foreign_key "admin_users_pages", "admin_users"
   add_foreign_key "admin_users_pages", "pages"
   add_foreign_key "pages", "subjects"
+  add_foreign_key "section_edits", "admin_users"
+  add_foreign_key "section_edits", "sections"
   add_foreign_key "sections", "pages"
 end
