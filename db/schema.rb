@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_18_215648) do
+ActiveRecord::Schema.define(version: 2021_11_19_130217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admin_users", force: :cascade do |t|
+    t.string "first_name", limit: 25
+    t.string "last_name", limit: 25
+    t.string "email", default: "", null: false
+    t.string "password", limit: 40
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "admin_users_pages", force: :cascade do |t|
+    t.bigint "page_id", null: false
+    t.bigint "admin_user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["admin_user_id"], name: "index_admin_users_pages_on_admin_user_id"
+    t.index ["page_id"], name: "index_admin_users_pages_on_page_id"
+  end
 
   create_table "pages", force: :cascade do |t|
     t.string "name"
@@ -46,15 +64,8 @@ ActiveRecord::Schema.define(version: 2021_11_18_215648) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "first_name", limit: 25
-    t.string "last_name", limit: 25
-    t.string "email", default: "", null: false
-    t.string "password", limit: 40
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
+  add_foreign_key "admin_users_pages", "admin_users"
+  add_foreign_key "admin_users_pages", "pages"
   add_foreign_key "pages", "subjects"
   add_foreign_key "sections", "pages"
 end
