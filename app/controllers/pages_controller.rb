@@ -4,9 +4,11 @@ class PagesController < ApplicationController
   end
 
   def show
+    @page = Page.find(params[:id])
   end
 
   def new
+    @page = Page.new
   end
 
   def create 
