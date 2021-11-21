@@ -1,39 +1,4 @@
-<% if !flash[:notice].blank? %>
-  <div class="notice">
-    <%= flash[:notice] %>
-  </div>
-<% end %>
+<p id="notice"><%= notice %></p>
 
-<%= link_to("<< Back to List", pages_path, :class => 'back-link') %>
-
-<div class="pages show">
-  <h2>Show Page</h2>
-
-  <table summary="Page detail view">
-    <tr>
-      <th>Name</th>
-      <td><%= @page.name %></td>
-    </tr>
-    <tr>
-      <th>Position</th>
-      <td><%= @page.position %></td>
-    </tr>
-    <tr>
-      <th>Visible?</th>
-      <td><%= @page.visible ? 'true' : 'false' %></td>
-    </tr>
-    <tr>
-      <th>Permalink</th>
-      <td><%= @page.permalink %></td>
-    </tr>
-    <tr>
-      <th>Created</th>
-      <td><%= @page.created_at %></td>
-    </tr>
-    <tr>
-      <th>Updated</th>
-      <td><%= @page.updated_at %></td>
-    </tr>
-  </table>
-
-</div>
+<%= link_to 'Edit', edit_page_path(@page) %> |
+<%= link_to 'Back', pages_path %>

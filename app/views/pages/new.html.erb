@@ -1,32 +1,5 @@
-<%= link_to("<< Back to List", pages_path, :class => 'back-link') %>
+<h1>New Page</h1>
 
-<div class="pages new">
-  <h2>Create Page</h2>
+<%= render 'form', page: @page %>
 
-  <%= form_for(@page) do |f| %>
-
-    <table summary="Page form fields">
-      <tr>
-        <th>Name</th>
-        <td><%= f.text_field(:name) %></td>
-      </tr>
-      <tr>
-        <th>Position</th>
-        <td><%= f.text_field(:position) %></td>
-      </tr>
-      <tr>
-        <th>Visible</th>
-        <td><%= f.text_field(:visible) %></td>
-      </tr>
-      <tr>
-        <th>Permalink</th>
-        <td><%= f.text_field(:permalink) %></td>
-      </tr>
-    </table>
-
-    <div class="form-buttons">
-      <%= f.submit("Create Page") %>
-    </div>
-
-  <% end %>
-</div>
+<%= link_to 'Back', pages_path %>

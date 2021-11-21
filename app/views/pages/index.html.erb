@@ -1,34 +1,25 @@
-<% if !flash[:notice].blank? %>
-  <div class="notice">
-    <%= flash[:notice] %>
-  </div>
-<% end %>
+<p id="notice"><%= notice %></p>
 
-<div class="pages index">
-  <h2>Pages</h2>
+<h1>Pages</h1>
 
-  <%= link_to("Add New Page", new_page_path, :class => 'action new') %>
-
-  <table class="listing" summary="Page list">
-    <tr class="header">
-      <th>#</th>
-      <th>name</th>
-      <th>Visible</th>
-      <th>Permalink</th>
-      <th>Actions</th>
-    </tr>
-    <% @pages.each do |page| %>
+<table>
+  <thead>
     <tr>
-      <td><%= page.position %></td>
-      <td><%= page.name %></td>
-      <td class="center"><%= page.visible ? 'Yes' : 'No' %></td>
-      <td class="center"><%= page.subjects.size %></td>
-      <td class="actions">
-        <%= link_to("Show", page_path(page), :class => 'action show') %>
-        <%= link_to("Edit", edit_page_path(page), :class => 'action edit') %>
-        <%= link_to("Delete", page_path(page), method: :delete, :class => 'action delete') %>
-      </td>
+      <th colspan="3"></th>
     </tr>
+  </thead>
+
+  <tbody>
+    <% @pages.each do |page| %>
+      <tr>
+        <td><%= link_to 'Show', page %></td>
+        <td><%= link_to 'Edit', edit_page_path(page) %></td>
+        <td><%= link_to 'Destroy', page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
     <% end %>
-  </table>
-</div>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Page', new_page_path %>
